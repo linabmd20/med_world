@@ -50,7 +50,7 @@ source .venv/bin/activate
 ## 3. Install dependencies
 
 ```bash
-pip install fastapi uvicorn
+python -m pip install fastapi uvicorn
 ```
 
 Optional freeze versions:
@@ -87,7 +87,8 @@ def get_xyz():
 ## 5. Run server
 
 ```bash
-uvicorn main:app --reload --port 3000
+python -m uvicorn main:app --reload
+python -m uvicorn main:app --reload --port 3000
 ```
 
 Server runs at:

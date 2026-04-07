@@ -6,7 +6,7 @@ app = FastAPI()
 def root():
     return {"message": "API running"}
 
-@app.get("/XYZ")
+@app.get("/xyz")
 def get_xyz():
     return {
         "name": "daho",
