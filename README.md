@@ -1,148 +1,50 @@
-# XYZ API (FastAPI sample)
+# Med World API
 
-Simple Python backend API that returns sample JSON.
+FastAPI project connected to local PostgreSQL, returning users and their accounts.
 
-Endpoint:
+## Project structure
 
-```
-GET /XYZ
-```
-
-Response:
-
-```json
-{ "name": "daho", "city": "fairfax" }
-```
-
----
-
-## 1. Create project
-
-```bash
-mkdir med
-cd med
+```text
+med_world/
+  app/
+    api/routes.py
+    core/config.py
+    db/connection.py
+    services/user_service.py
+    main.py
+  main.py
+  .env.example
+  requirements.txt
 ```
 
----
-
-## 2. Create virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate venv
-
-### Windows PowerShell
-
-```bash
-.\.venv\Scripts\Activate
-```
-
-### Mac/Linux
-
-```bash
-source .venv/bin/activate
-```
-
----
-
-## 3. Install dependencies
-
-```bash
-python -m pip install fastapi uvicorn
-```
-
-Optional freeze versions:
-
-```bash
-pip freeze > requirements.txt
-```
-
----
-
-## 4. Create API file
-
-Create `main.py`
-
-```python
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "API running"}
-
-@app.get("/XYZ")
-def get_xyz():
-    return {
-        "name": "daho",
-        "city": "fairfax"
-    }
-```
-
----
-
-## 5. Run server
-
-```bash
-python -m uvicorn main:app --reload
-python -m uvicorn main:app --reload --port 3000
-```
-
-Server runs at:
-
-```
-http://localhost:3000
-```
-
----
-
-## 6. Test API
-
-Open in browser:
-
-```
-http://localhost:3000/XYZ
-```
-
-Expected result:
-
-```json
-{
-  "name": "daho",
-  "city": "fairfax"
-}
-```
-
----
-
-## CLI Quick Start (copy/paste)
+## Setup
 
 ```bash
 python -m venv .venv
 .\.venv\Scripts\Activate
-pip install fastapi uvicorn
-uvicorn main:app --reload --port 3000
-```
-
----
-
-## Optional: requirements.txt install
-
-```bash
 pip install -r requirements.txt
 ```
 
----
+## Environment
 
-## Notes
+Copy `.env.example` to `.env` and set your real values:
 
-* Port 3000 used to simulate frontend calling API
-* Works with Angular, React, or any FE app
-* FastAPI auto docs available at:
-
+```env
+APP_NAME=Med World API
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_NAME=bank
+DB_USER=postgres
+DB_PASSWORD=your_password_here
 ```
-http://localhost:3000/docs
+
+## Run
+
+```bash
+python -m uvicorn main:app --reload
 ```
+
+## Endpoints
+
+- `GET /` -> health message
+- `GET /xyz` -> users with nested accounts
